@@ -1,4 +1,5 @@
 var webpack = require ('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -26,8 +27,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+        inject: true,
+        template: __dirname + '/public/index.html',
+        })
+       ],
     devServer: {
         contentBase: "./public",
         historyApiFallback: true,
