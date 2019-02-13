@@ -20,7 +20,7 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015','react'],
-                    plugins: ['transform-class-properties']
+                    plugins: ['react-hot-loader/babel','transform-class-properties']
                 }
             },
         ]
@@ -32,5 +32,6 @@ module.exports = {
         contentBase: "./public",
         historyApiFallback: true,
         inline: true,
+        hot: true,
     }
 }
