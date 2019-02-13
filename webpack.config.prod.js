@@ -1,5 +1,6 @@
 var webpack = require ('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: __dirname + "/src/index.js",
@@ -19,6 +20,20 @@ module.exports = {
                     plugins: ['react-hot-loader/babel','transform-class-properties']
                 }
             },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
+            },
+            {
+                exclude: [/\.html$/, /\.(js|jsx)$/, /\.css$/, /\.json$/],
+                loader: 'file-loader',
+                options: {
+                    name: 'static/media/[name].[ext]'
+                }
+            }
         ]
     },
     plugins: [
@@ -42,6 +57,19 @@ module.exports = {
                 minifyCSS: true,
                 minifyURLs: true,
             },
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                reduce_vars: false
+            },
+            output: {
+                comments: false
+            },
+            sourceMap: true
+        }),
+        new ManifestPlugin({
+            fileName: 'asset-manifest.json',
         }),
     ],
 }
