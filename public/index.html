@@ -7,5 +7,20 @@
     </head>
     <body>
         <div id="root"></div>
+        <script src="./secrets.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: window.apiKey,
+            authDomain: "chatastrophe-191b2.firebaseapp.com",
+            databaseURL: "https://chatastrophe-191b2.firebaseio.com",
+            projectId: "chatastrophe-191b2",
+            storageBucket: "",
+            messagingSenderId: window.messagingSenderId
+        };
+        window.firebase = firebase;
+        firebase.initializeApp(config);
+        </script>
     </body>
 </html>

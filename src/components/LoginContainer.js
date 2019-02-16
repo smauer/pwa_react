@@ -14,7 +14,12 @@ class LoginContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
+        this.setState({ error: '' });
+        if (this.state.email && this.state.password) {
+
+        } else {
+            this.setState({error: 'Please fill in both fields.' });
+        }
     };
 
     render() {
@@ -35,6 +40,7 @@ class LoginContainer extends Component {
                         value={this.state.password}
                         onChange={this.handlePasswordChange}
                     />
+                    <p className="error">{this.state.error}</p>
                     <button className="red light" type="submit">Login</button>
                 </form>
             </div>
