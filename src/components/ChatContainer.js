@@ -59,6 +59,7 @@ export default class ChatComponent extends Component {
                 <Header>
                     <button className="red" onClick={this.handleLogout}>Logout</button>
                 </Header>
+                {this.props.messagesLoaded ? (
                 <div 
                     id="message-container"
                     ref={element => {
@@ -75,6 +76,11 @@ export default class ChatComponent extends Component {
                         ))
                     }
                 </div>
+                ) : (
+                    <div id="loading-container">
+                        <img src="/assets/icon.png" alt="logo" id="loader" />
+                    </div>
+                )}
                 <div id="chat-input">
                     <textarea 
                         placeholder="Add your message..."

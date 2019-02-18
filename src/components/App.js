@@ -6,7 +6,7 @@ import UserContainer from './UserContainer';
 import './app.css';
 
 class App extends Component {
-    state = { user: null, messages: [] };
+    state = { user: null, messages: [], messagesLoaded: false };
 
     componentDidMount() {
         firebase
@@ -23,6 +23,9 @@ class App extends Component {
             .ref('/messages')
             .on('value', snapshot => {
                 this.onMessage(snapshot);
+                if (!this.state.messagesLoaded) {
+                    this.setState({ messagesLoaded: true });
+                }
             });
     }
 
@@ -60,6 +63,7 @@ class App extends Component {
                             onSubmit={this.handleSubmitMessage}
                             user={this.state.user}
                             messages={this.state.messages}
+                            messagesLoaded={this.state.messagesLoaded}
                         />
                     )}
                 />
